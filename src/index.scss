@@ -163,14 +163,14 @@ header{
   b{
     font-size: 14px;
   }
+}
 
-  .removeBtn{
-    opacity: 0.5;
-    cursor: pointer;
-    transition: opacity 0.15s ease-in-out;
+.removeBtn{
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in-out;
 
-    &:hover{
-      opacity: 1;
-    }
+  &:hover{
+    opacity: 1;
   }
 }
