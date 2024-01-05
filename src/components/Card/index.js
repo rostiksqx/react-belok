@@ -44,9 +44,10 @@ function Card({
                     <rect x="124" y="238" rx="10" ry="10" width="32" height="32" />
                 </ContentLoader>) :
                 (<>
+                    {onFavorite && (
                     <div className={styles.favorite} onClick={onClickHeart}>
                         <img src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="Favorite Btn" />
-                    </div>
+                    </div>)}
                     <img width={133} height={113} src={imageUrl} alt="Whey Protein" />
                     <h5>{title}</h5>
                     <div className="d-flex justify-between align-center">
@@ -54,12 +55,12 @@ function Card({
                             <span>Цена:</span>
                             <b>{price} грн.</b>
                         </div>
-                        <img
+                        {onPlus && <img
                             className={styles.plus}
                             onClick={onClickPlus}
                             src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
                             alt="Plus"
-                        />
+                        />}
                     </div>
                 </>)
             }
