@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 
+export const AppContext = React.createContext({});
 
 function App() {
   const [items, setItems] = React.useState([]);
@@ -71,33 +72,47 @@ function App() {
     setSearchValue(event.target.value);
   };
 
-  return (
-    <div className="wrapper clear">
-      {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItems} /> : null}
-      <Header onClickCart={() => setCartOpened(true)} />
-      
-      <Routes>
-        <Route path="/" element=
-        {
-          <Home 
-            searchValue={searchValue}
-            cartItems={cartItems}
-            onChangeSearchInput={onChangeSearchInput}
-            items={items}
-            onAddToFavorite={onAddToFavorite}
-            onAddToCart={onAddToCart}
-            isLoading={isLoading}
-          />
-        } 
-        />
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => obj.id === id)
+  };
 
-        <Route path="/favorites" element=
-        {
-          <Favorites items={favorites} onAddToFavorite={onAddToFavorite} />
-        } 
-        />
-      </Routes>      
-    </div>
+  return (
+    <AppContext.Provider value={{ 
+        cartItems, 
+        favorites, 
+        items, 
+        isItemAdded, 
+        onAddToFavorite, 
+        setCartOpened,
+        setCartItems
+      }} >
+      <div className="wrapper clear">
+        {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItems} /> : null}
+        <Header onClickCart={() => setCartOpened(true)} />
+        
+        <Routes>
+          <Route path="/" element=
+          {
+            <Home 
+              searchValue={searchValue}
+              cartItems={cartItems}
+              onChangeSearchInput={onChangeSearchInput}
+              items={items}
+              onAddToFavorite={onAddToFavorite}
+              onAddToCart={onAddToCart}
+              isLoading={isLoading}
+            />
+          } 
+          />
+
+          <Route path="/favorites" element=
+          {
+            <Favorites />
+          } 
+          />
+        </Routes>      
+      </div>
+    </AppContext.Provider>
   );
 }
 
