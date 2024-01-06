@@ -16,7 +16,6 @@ function Favorites() {
             favorites.map((item, index) => (
               <Card
                 key={index}
-                favorited={true}
                 onFavorite={onAddToFavorite}
                 {...item}
               />

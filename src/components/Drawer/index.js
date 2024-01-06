@@ -1,13 +1,16 @@
 import React from "react";
-import Info from "./Info";
-import { AppContext } from "../App";
 import axios from "axios";
-import { useCart } from "../hooks/useCart";
+
+import Info from "../Info";
+import { AppContext } from "../../App";
+import { useCart } from "../../hooks/useCart";
+
+import styles from "./Drawer.module.scss";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer() {
-    const { setCartOpened, onRemoveItems } = React.useContext(AppContext);
+    const { setCartOpened, onRemoveItems, cartOpened } = React.useContext(AppContext);
     const { cartItems = [], setCartItems, total } = useCart();
     
     const [isOrderComplited, setIsOrderComplite] = React.useState(false);
@@ -39,8 +42,8 @@ function Drawer() {
     };
 
     return (        
-        <div className="overlay">
-            <div className="drawer">
+        <div className={`${styles.overlay} ${cartOpened ? styles.overlayVisible : ""}`}>
+            <div className={styles.drawer}>
                 <h2 className="d-flex justify-between mb-30">
                     Корзина <img onClick={() => setCartOpened(false)} className="removeBtn" src="/img/btn-remove.svg" alt="Close" />
                 </h2>
@@ -48,7 +51,7 @@ function Drawer() {
                 {
                     cartItems.length > 0 ? (
                         <div className="d-flex flex-column flex" >
-                            <div className="items">
+                            <div className="items flex">
                                 {cartItems.map((obj) => (
                                     <div key={obj.id} className="cartItem d-flex align-center mb-20">
                                         <div
