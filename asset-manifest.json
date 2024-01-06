@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-belok/static/css/main.c8845691.css",
+    "main.js": "/react-belok/static/js/main.f3a6df7e.js",
+    "index.html": "/react-belok/index.html",
+    "main.c8845691.css.map": "/react-belok/static/css/main.c8845691.css.map",
+    "main.f3a6df7e.js.map": "/react-belok/static/js/main.f3a6df7e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c8845691.css",
+    "static/js/main.f3a6df7e.js"
+  ]
+}
