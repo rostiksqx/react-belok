@@ -81,7 +81,7 @@ function App() {
 
   const onAddToFavorite = async (obj) => {
     try {
-      if (favorites.find(favObj => Number(favObj.id) === Number(obj.id))){
+      if (favorites.find(favObj => favObj.imageUrl === obj.imageUrl)) {
         axios.delete(`https://659546a804335332df825ce2.mockapi.io/favorites/${obj.id}`);
         setFavorites((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)));
       } else {
@@ -129,9 +129,6 @@ function App() {
             <Home 
               searchValue={searchValue}
               onChangeSearchInput={onChangeSearchInput}
-              items={items}
-              onAddToFavorite={onAddToFavorite}
-              onAddToCart={onAddToCart}
               isLoading={isLoading}
             />
           } 

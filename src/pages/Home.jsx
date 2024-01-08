@@ -1,14 +1,14 @@
 import React from 'react';
 import Card from '../components/Card';
+import { AppContext } from '../App';
 
 function Home({
   searchValue, 
-  onChangeSearchInput, 
-  items, 
-  onAddToFavorite, 
-  onAddToCart,
+  onChangeSearchInput,
   isLoading,
 }) {
+  const { items, onAddToCart, isItemAddedToFavorites } = React.useContext(AppContext);
+
   const renderItems = () => {
     const filtredItems = items.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase()),
@@ -16,7 +16,9 @@ function Home({
     return (isLoading ? [...Array(12)] : filtredItems).map((item, index) => (
       <Card
         key={index}
-        onFavorite={(obj) => onAddToFavorite(obj)}
+        // Cannot read property 'id' of undefined
+        // favorited={isItemAddedToFavorites(item.id)}
+        favorited={isItemAddedToFavorites(item)}
         onPlus={(obj) => onAddToCart(obj)}
         loading={isLoading}
         {...item}
