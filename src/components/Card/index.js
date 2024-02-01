@@ -13,7 +13,7 @@ function Card({
     loading = false
 }) {
     const { isItemAdded, onAddToFavorite } = React.useContext(AppContext);
-    const obj = { id, parentId: id, title, imageUrl, price };
+    const obj = { parentId: id, id, title, imageUrl, price };
 
     const onClickHeart = () => {
         onAddToFavorite(obj);
@@ -44,7 +44,7 @@ function Card({
                 (<>
                     {onAddToFavorite && (
                     <div className={styles.favorite} onClick={onClickHeart}>
-                        <img src={favorited ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="Favorite Btn" />
+                        <img src={ favorited ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="Favorite Btn" />
                     </div>)}
                     <img width={133} height={113} src={imageUrl} alt="Whey Protein" />
                     <h5>{title}</h5>

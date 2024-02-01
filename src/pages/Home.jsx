@@ -16,10 +16,8 @@ function Home({
     return (isLoading ? [...Array(12)] : filtredItems).map((item, index) => (
       <Card
         key={index}
-        // Cannot read property 'id' of undefined
-        // favorited={isItemAddedToFavorites(item.id)}
-        favorited={isItemAddedToFavorites(item)}
         onPlus={(obj) => onAddToCart(obj)}
+        favorited={item && isItemAddedToFavorites(item.id)}
         loading={isLoading}
         {...item}
       />
