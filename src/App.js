@@ -65,7 +65,7 @@ function App() {
       }
     } catch (error) {
       alert('Не удалось добавить в корзину');
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -118,7 +118,8 @@ function App() {
         onAddToFavorite, 
         onAddToCart,
         setCartOpened,
-        onRemoveItems
+        onRemoveItems,
+        setCartItems,
       }} >
       <div className="wrapper clear">
         <Drawer />

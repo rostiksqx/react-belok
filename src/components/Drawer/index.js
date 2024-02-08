@@ -11,7 +11,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer() {
     const { setCartOpened, onRemoveItems, cartOpened } = React.useContext(AppContext);
-    const { cartItems = [], setCartItems, total } = useCart();
+    const { cartItems = [], total, setCartItems } = useCart();
     
     const [isOrderComplited, setIsOrderComplite] = React.useState(false);
     const [orderId, setOrderId] = React.useState(null);
@@ -23,7 +23,6 @@ function Drawer() {
             setIsLoading(true);
             const { data } = await axios.post("https://659546a804335332df825ce2.mockapi.io/orders", {
                 items: cartItems,
-
             });
             setOrderId(data.id);
             setIsOrderComplite(true);
@@ -37,6 +36,7 @@ function Drawer() {
 
         } catch (error) {
             alert("Ошибка при создании заказа :(");
+            console.error(error);
         }
         setIsLoading(false);
     };
